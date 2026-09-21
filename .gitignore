@@ -1,0 +1,27 @@
+
+# Compiled output
+*.o
+*.obj
+minishell
+*.exe
+*.out
+
+# Build folders
+build/
+dist/
+
+# IDE settings
+.vscode/
+.vs/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.swp
+*~
+*.log
