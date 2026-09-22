@@ -27,11 +27,7 @@ void run_shell(void) {
             break;
         }
 
-        printf("Command: %s\n", args[0]);
-
-        for (int i = 1; i < argc; i++) {
-            printf("Argument %d: %s\n", i, args[i]);
-        }
+        execute_command(args);
     }
 }
 
