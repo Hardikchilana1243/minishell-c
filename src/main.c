@@ -1,7 +1,9 @@
+
 #include "shell.h"
 
 void run_shell(void) {
     char input[INPUT_SIZE];
+    char *args[MAX_ARGS];
 
     while (1) {
         printf("minishell> ");
@@ -14,16 +16,22 @@ void run_shell(void) {
 
         input[strcspn(input, "\n")] = '\0';
 
-        if (strcmp(input, "exit") == 0) {
+        int argc = parse_command(input, args);
+
+        if (argc == 0) {
+            continue;
+        }
+
+        if (strcmp(args[0], "exit") == 0) {
             printf("Exiting MiniShell...\n");
             break;
         }
 
-        if (input[0] == '\0') {
-            continue;
-        }
+        printf("Command: %s\n", args[0]);
 
-        printf("You entered: %s\n", input);
+        for (int i = 1; i < argc; i++) {
+            printf("Argument %d: %s\n", i, args[i]);
+        }
     }
 }
 
