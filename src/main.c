@@ -13,7 +13,6 @@ void run_shell(void) {
             printf("\n");
             break;
         }
-
         input[strcspn(input, "\n")] = '\0';
 
         int argc = parse_command(input, args);
