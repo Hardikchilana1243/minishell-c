@@ -1,4 +1,3 @@
-
 #include "shell.h"
 
 void run_shell(void) {
@@ -13,6 +12,7 @@ void run_shell(void) {
             printf("\n");
             break;
         }
+
         input[strcspn(input, "\n")] = '\0';
 
         int argc = parse_command(input, args);
@@ -21,9 +21,15 @@ void run_shell(void) {
             continue;
         }
 
-        if (strcmp(args[0], "exit") == 0) {
+        int builtin_result = handle_builtin(args);
+
+        if (builtin_result == 2) {
             printf("Exiting MiniShell...\n");
             break;
+        }
+
+        if (builtin_result == 1) {
+            continue;
         }
 
         execute_command(args);
