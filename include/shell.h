@@ -1,4 +1,3 @@
-
 #ifndef SHELL_H
 #define SHELL_H
 
@@ -13,7 +12,7 @@
 #include <errno.h>
 
 #define INPUT_SIZE 1024
-#define MAX_ARGS  100
+#define MAX_ARGS 100
 
 void run_shell(void);
 int parse_command(char *input, char **args);
