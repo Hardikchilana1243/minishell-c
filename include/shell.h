@@ -19,5 +19,6 @@ int parse_command(char *input, char **args);
 int handle_builtin(char **args);
 void execute_command(char **args);
 void setup_signals(void);
+int redirect_output(const char *filename);
 
 #endif
