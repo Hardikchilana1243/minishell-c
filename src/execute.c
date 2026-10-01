@@ -13,6 +13,19 @@ void execute_command(char **args) {
 
         for (int i = 0; args[i] != NULL; i++) {
 
+            if(strcmp(args[i], ">>") == 0) {
+                if (args[i+1] == NULL) {
+                    fprintf(stderr, "minishell: missing filename after >>\n");
+                    _exit(2);
+                }
+                char *filename = args[i+1];
+                if(append_output(filename) != 0) {
+                    _exit(1);
+                }
+                args[i] = NULL;
+                break;
+            }
+            
             // Check for output redirection: >
             if (strcmp(args[i], ">") == 0) {
 
