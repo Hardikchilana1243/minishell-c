@@ -21,5 +21,5 @@ void execute_command(char **args);
 void setup_signals(void);
 int redirect_output(const char *filename);
 int append_output(const char *filename);
-
+int redirect_input(const char *filename);
 #endif

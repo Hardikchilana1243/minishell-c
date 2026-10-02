@@ -48,6 +48,22 @@ void execute_command(char **args) {
 
                 break;
             }
+
+            // Check for input redirection: <
+            if(strcmp(args[i], "<") == 0) {
+                if(args[i+1] == NULL) {
+                    fprintf(stderr, "minishell: missing filename after");
+                    _exit(2);
+
+                }
+                char *filename = args[i+1];
+                if(redirect_input(filename) != 0) {
+                    _exit(1);
+                    return;
+                }
+                args[i] = NULL;
+                break;
+            }
         }
 
         // Execute the command

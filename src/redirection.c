@@ -35,3 +35,20 @@ int append_output(const char *filename) {
     close(fd);
     return 0;
 }
+
+int redirect_input(const char *filename) {
+    int fd = open(filename, O_RDONLY);
+    
+    if(fd < 0) {
+        perror("minishell: open");
+        return -1;
+
+    }
+    if(dup2(fd, STDIN_FILENO) < 0) {
+        perror("minisehell: dup2");
+        close(fd);
+        return -1;
+    }
+    close(fd);
+    return 0;
+}
