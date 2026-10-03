@@ -19,6 +19,7 @@ int parse_command(char *input, char **args);
 int handle_builtin(char **args);
 void execute_command(char **args);
 void setup_signals(void);
+void execute_pipe(char **args);
 int redirect_output(const char *filename);
 int append_output(const char *filename);
 int redirect_input(const char *filename);

@@ -1,6 +1,22 @@
 #include "shell.h"
 
 void execute_command(char **args) {
+
+
+    int pipe_position = -1;
+
+    for (int i = 0; args[i] != NULL; i++) {
+        if (strcmp(args[i], "|") == 0) {
+            pipe_position = i;
+            break;
+        }
+    }
+
+    if (pipe_position != -1) {
+        execute_pipe(args);
+        return;
+    }
+
     pid_t pid = fork();
 
     if (pid < 0) {
