@@ -13,13 +13,14 @@
 
 #define INPUT_SIZE 1024
 #define MAX_ARGS 100
-
+#define _POSIX_C_SOURCE 200809L
 void run_shell(void);
 int parse_command(char *input, char **args);
 int handle_builtin(char **args);
 void execute_command(char **args);
-void setup_signals(void);
 void execute_pipe(char **args);
+void setup_signals(void);
+void handle_sigint(int signal);
 int redirect_output(const char *filename);
 int append_output(const char *filename);
 int redirect_input(const char *filename);

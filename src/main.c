@@ -9,9 +9,14 @@ void run_shell(void) {
         fflush(stdout);
 
         if (fgets(input, sizeof(input), stdin) == NULL) {
-            printf("\n");
-            break;
-        }
+    if (errno == EINTR) {
+        clearerr(stdin);
+        continue;
+    }
+
+    printf("\n");
+    break;
+}
 
         input[strcspn(input, "\n")] = '\0';
 
@@ -35,8 +40,10 @@ void run_shell(void) {
         execute_command(args);
     }
 }
-
 int main(void) {
+    setup_signals();
     run_shell();
+
     return 0;
 }
+
