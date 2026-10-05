@@ -1,18 +1,31 @@
-
 CC = gcc
+
 CFLAGS = -Wall -Wextra -Wpedantic -std=c11 -Iinclude
-SRC = src/main.c src/parser.c src/builtins.c src/execute.c src/redirection.c src/pipe.c src/signals.c
+
 TARGET = minishell
+
+SRC = src/main.c \
+      src/parser.c \
+      src/execute.c \
+      src/builtins.c \
+      src/redirection.c \
+      src/pipe.c \
+      src/signals.c
+
+OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJ) $(TARGET)
 
 run: $(TARGET)
 	./$(TARGET)
 
-clean:
-	rm -f $(TARGET) *.o src/*.o
-
-.PHONY: all run clean
+.PHONY: all clean run
