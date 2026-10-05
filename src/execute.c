@@ -11,7 +11,7 @@ void execute_command(char **args) {
             break;
         }
     }
-
+    
     if (pipe_position != -1) {
         execute_pipe(args);
         return;
