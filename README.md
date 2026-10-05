@@ -99,7 +99,7 @@ A functional, modular command-line shell that demonstrates basic process managem
 
 ## Author
 
-* Name: [Your Name]
+* Name: Hardik
 * Course: B.Tech Computer Science and Engineering
 * Project: MiniShell — A Mini Unix Shell in C
 
